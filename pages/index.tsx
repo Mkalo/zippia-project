@@ -1,9 +1,13 @@
+import List from '@/components/jobs/List'
 import Head from 'next/head'
-import { Inter } from '@next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+export async function getServerSideProps() {
+  const res = await fetch(`http://localhost:3000/api/hello`);
+  const data = await res.json() as { name: string };
+  return { props: { data } };
+}
 
-export default function App() {
+export default function Home({ data }: { data: { name: string } }) {
   return (
     <>
       <Head>
@@ -12,7 +16,13 @@ export default function App() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="bg-sky-500 h-screen">
+      <main className="bg-white h-screen flex items-center flex-col">
+        {/* Main column */}
+        {data.name}
+        <div className="w-3/4 h-full flex flex-col items-center">
+          <h1 className="text-3xl font-bold text-gray-800">Zippia Project</h1>
+          <List></List>
+        </div>
       </main>
     </>
   )
