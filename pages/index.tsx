@@ -1,8 +1,9 @@
 import List from '@/components/jobs/List'
+import getBaseURL from '@/utils/baseUrl';
 import Head from 'next/head'
 
 export async function getServerSideProps() {
-  const res = await fetch(`http://localhost:3000/api/hello`);
+  const res = await fetch(`${getBaseURL()}/api/hello`);
   const data = await res.json() as { name: string };
   return { props: { data } };
 }
