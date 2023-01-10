@@ -19,9 +19,8 @@ export default function Home({ data }: { data: { name: string } }) {
       </Head>
       <main className="bg-white h-screen flex items-center flex-col">
         {/* Main column */}
-        {data.name}
         <div className="w-3/4 h-full flex flex-col items-center">
-          <h1 className="text-3xl font-bold text-gray-800">Zippia Project</h1>
+          <h1 className="text-3xl font-bold text-gray-800 mb-8">Zippia Project</h1>
           <List></List>
         </div>
       </main>
