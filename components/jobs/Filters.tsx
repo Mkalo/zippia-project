@@ -47,7 +47,6 @@ export function Filters({ lastSevenDays, allCompanies, onChangeJobTitle, onChang
           })
         }}
       />
-      {/* Button to show only jobs posted in last 7 days */}
       <button onClick={() => onToggleLastSevenDays()} className={`ml-4 h-[38px] px-4 py-2 rounded-md ${lastSevenDays ? 'bg-blue text-white' : 'bg-gray-light'}`}>Last 7 days</button>
     </div>
   );

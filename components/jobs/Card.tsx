@@ -1,7 +1,7 @@
 export default function Card({ job, onSelectJob }: { job: API.Job; onSelectJob: (job: API.Job) => void }) {
   return (
     <li onClick={() => onSelectJob(job)} className="group w-full bg-white hover:bg-[#f7f8f9] rounded-[4px] border border-gray-light shadow-md cursor-pointer mb-4 p-5 xl:grid xl:grid-cols-4 gap-8">
-      <div className="flex flex-col">
+      <div className="flex flex-col mb-2">
         <h2 className="text-xl font-bold line-clamp-2 group-hover:text-blue">{job.jobTitle}</h2>
         <label className="truncate">
           {job.companyName}
@@ -11,7 +11,7 @@ export default function Card({ job, onSelectJob }: { job: API.Job; onSelectJob: 
         </label>
       </div>
       <div className="col-span-2">
-        <article className="line-clamp-3 text-sm">
+        <article className="line-clamp-3 text-sm mb-2">
           {job.jobDescription.replace(/<[^>]+>/g, ' ')}
         </article>
       </div>
