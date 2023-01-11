@@ -18,6 +18,7 @@ export function Jobs({ initialJobs, initialJobTitle }: { initialJobs: API.Job[];
   const [fetching, setFetching] = useState(false);
   const [lastSevenDays, setLastSevenDays] = useState(false);
   const [companyToShow, setCompanyToShow] = useState('');
+  const jobDetailsRef = useRef<HTMLDivElement>(null);
 
   // Optimize list of filtered jobs to only re-evaluate if jobs or searchTerm changes
   const filteredJobs = useMemo(() => {
@@ -45,9 +46,17 @@ export function Jobs({ initialJobs, initialJobTitle }: { initialJobs: API.Job[];
     getListOfJobs(jobTitle).then((response) => setJobs(response.jobs)).finally(() => setFetching(false));
   }, [jobTitle]);
 
+  useEffect(() => {
+    if (!jobDetailsRef.current) return;
+    // check if element is already in view
+    if (jobDetailsRef.current.getBoundingClientRect().top > 0) return;
+    
+    jobDetailsRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [selectedJob]);
+
   return (
     <main className="bg-white h-screen flex items-center flex-col">
-      <div className="w-3/4 max-w-5xl h-full flex flex-col items-center">
+      <div className="w-3/4 min-w-[300px] max-w-5xl h-full flex flex-col items-center">
         <h1 className="text-3xl font-bold text-gray-800 mb-8 whitespace-nowrap">Zippia Jobs</h1>
         <Filters
           lastSevenDays={lastSevenDays}
@@ -61,7 +70,7 @@ export function Jobs({ initialJobs, initialJobTitle }: { initialJobs: API.Job[];
           <div className={`relative ${selectedJob ? 'col-span-1 order-last lg:order-first' : 'col-span-2'} ${fetching ? 'h-[70vh]' : ''}`}>
             {!fetching ? <ListMemo jobs={filteredJobs} onSelectJob={(job: API.Job) => setSelectedJob(job)}></ListMemo> : <Loading />}
           </div>
-          {selectedJob && <div className="lg:sticky lg:top-6 h-fit"><JobDetails job={selectedJob} onCloseDetail={() => setSelectedJob(undefined)}></JobDetails></div>}
+          {selectedJob && <div className="lg:sticky lg:top-6 h-fit" ref={jobDetailsRef}><JobDetails job={selectedJob} onCloseDetail={() => setSelectedJob(undefined)}></JobDetails></div>}
         </div>
       </div>
     </main>
