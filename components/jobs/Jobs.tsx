@@ -10,7 +10,7 @@ const ListMemo = React.memo(List, (prevProps, nextProps) => {
   return prevProps.jobs === nextProps.jobs;
 });
 
-export function Jobs({ initialJobs, initialJobTitle }: { initialJobs: API.Job[]; initialJobTitle: string }) {
+export function Jobs({ initialJobs }: { initialJobs: API.Job[] }) {
   const [jobs, setJobs] = useState<API.Job[]>(initialJobs);
   const [selectedJob, setSelectedJob] = useState<API.Job>();
   const [jobTitle, setJobTitle] = useState('');
@@ -20,7 +20,7 @@ export function Jobs({ initialJobs, initialJobTitle }: { initialJobs: API.Job[];
   const [companyToShow, setCompanyToShow] = useState('');
   const jobDetailsRef = useRef<HTMLDivElement>(null);
 
-  // Optimize list of filtered jobs to only re-evaluate if jobs or searchTerm changes
+  // Optimize list of filtered jobs to only re-evaluate if jobs or some of the filter states changes
   const filteredJobs = useMemo(() => {
     return jobs
       .filter(job => 

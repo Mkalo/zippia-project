@@ -25,7 +25,7 @@ export default function Home({ ssrResponse }: { ssrResponse: API.ListJobsRespons
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Jobs initialJobs={ssrResponse.jobs} initialJobTitle={DEFAULT_JOB_TITLE} />
+      <Jobs initialJobs={ssrResponse.jobs} />
     </>
   );
 }
