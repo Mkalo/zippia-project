@@ -5,7 +5,6 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
     colors: {
       'blue': '#007bff',
       'indigo': '#6610f2',
@@ -18,6 +17,7 @@ module.exports = {
       'teal': '#20c997',
       'cyan': '#17a2b8',
       'white': '#fff',
+      'gray-light': '#d8dee2',
       'gray': '#6c757d',
       'gray-dark': '#343a40',
       'primary': '#007bff',
@@ -27,8 +27,10 @@ module.exports = {
       'warning': '#ffc107',
       'danger': '#dc3545',
       'light': '#f8f9fa',
-      'dark': '#343a40'
+      'dark': '#343a40',
     }
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp')
+  ],
 };
