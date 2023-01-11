@@ -29,7 +29,7 @@ declare module API {
     socCodeName: boolean;
     listingHash: string;
     postedDate: string;
-    postingDate: Date;
+    postingDate: string;
     actionDateSince: string;
     benefits: string[];
     jobTags: string[];
@@ -50,7 +50,7 @@ declare module API {
     OBJcompanyID: number;
     OBJcompanyDisplay: string;
     OBJindustry: string;
-    OBJpostingDate: Date;
+    OBJpostingDate: string;
     OBJtitle: string;
     OBJtitleDisplay: string;
     OBJurl: string;
