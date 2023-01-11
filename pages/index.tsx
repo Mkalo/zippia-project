@@ -1,14 +1,17 @@
-import List from '@/components/jobs/List'
-import getBaseURL from '@/utils/baseUrl';
-import Head from 'next/head'
+import List from '@/components/jobs/List';
+import Head from 'next/head';
 
-export async function getServerSideProps() {
-  const res = await fetch(`${getBaseURL()}/api/hello`);
-  const data = await res.json() as { name: string };
-  return { props: { data } };
+async function getListOfJobs() {
+  
 }
 
-export default function Home({ data }: { data: { name: string } }) {
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
+
+export default function Home() {
   return (
     <>
       <Head>
@@ -25,5 +28,5 @@ export default function Home({ data }: { data: { name: string } }) {
         </div>
       </main>
     </>
-  )
+  );
 }
